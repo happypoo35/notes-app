@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <main class="container">
+    <h1 class="title">Notes</h1>
+    <form class="addnew collapse" id="addnew">
+      <textarea id="input" class="hide" rows="1" maxlength="240" placeholder="Enter your note here"
+        oninput="auto_grow(this)"></textarea>
+      <button type="submit" class="add-btn hide" id="add-btn">
+        <pre>Add note</pre></button>
+      <button class="plus-btn plus-toggle" id="plus-btn">
+        <svg id="plus" width="24" height="24" viewBox="0 0 24 24">
+          <rect id="Rectangle_6" data-name="Rectangle 6" width="4" height="24" rx="2" transform="translate(10)"
+            fill="#343853" />
+          <rect id="Rectangle_7" data-name="Rectangle 7" width="4" height="24" rx="2"
+            transform="translate(24 10) rotate(90)" fill="#343853" />
+        </svg>
+      </button>
+    </form>
+    <h2 class="empty-list">You don't have any notes added yet</h2>
+    <section class="notes-container"></section>
+  </main>
+  <script src="app.js"></script>
+</body>
+
+</html>

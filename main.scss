@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+$background: #343853;
+$dark: #21253e;
+$accent: #ffbd00;
+$text: #c4cbf2;
+$text-dark: #858cbe;
+
+$laptop: 1150px;
+$tablet: 880px;
+$mobile: 610px;
+
+@mixin laptop {
+  @media screen and (max-width: $laptop) {
+    @content;
+  };
+};
+
+@mixin tablet {
+  @media screen and (max-width: $tablet) {
+    @content;
+  };
+};
+
+@mixin mobile {
+  @media screen and (max-width: $mobile) {
+    @content;
+  };
+};
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: $background;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+i {
+  pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 5vh;
+}
+
+h1 {
+  font-size: 4rem;
+  color: white;
+  margin: 6rem 0 4rem;
+}
+
+form {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  max-width: 1088px;
+  width: 100%;
+  min-height: 3.5rem;
+  border-radius: 1.8rem;
+  margin-bottom: 5rem;
+  overflow: hidden;
+  transition: max-width .4s ease-in-out;
+
+  #input {
+    outline: none;
+    border: none;
+    resize: none;
+    overflow: hidden;
+    background: $dark;
+    font-family: inherit;
+    font-size: 1rem;
+    color: $text;
+    border-radius: 1.8rem;
+    height: 3.5rem;
+    min-height: 3.5rem;
+    max-height: 7rem;
+    padding: 1.1rem 2rem;
+    margin-right: 2rem;
+    width: 75%;
+    min-width: 75%;
+
+    @include laptop {
+      width: 100%;
+    }
+
+    &::placeholder {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: rgba($text-dark, .6);
+      white-space: nowrap;
+    }
+  }
+
+  .add-btn {
+    background: $accent;
+    font-family: inherit;
+    padding: 0 2.5rem;
+    border-radius: 1.8rem;
+    height: 3.5rem;
+    color: $background;
+    transition: all .4s ease-in-out;
+
+    @include tablet {
+      padding: 0;
+      min-width: 3.5rem;
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 1.2rem;
+        height: .2rem;
+        border-radius: 1rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: $background;
+      }
+
+      &::before {
+        content: '';
+        width: .2rem;
+        height: 1.2rem;
+        border-radius: 1rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: $background;
+      }
+
+      pre {
+        display: none;
+      }
+    }
+
+    pre {
+      font-family: inherit;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+  }
+
+  .plus-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: $accent;
+    width: 3.5rem;
+    min-width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include laptop {
+      display: none;
+    }
+
+    svg {
+      transform: rotate(45deg);
+      transition: transform .4s ease-in-out;
+    }
+  }
+}
+
+.notes-container {
+  max-width: 1088px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 1rem;
+
+  @include laptop {
+    grid-template-columns: repeat(3,1fr);
+  }
+
+  @include tablet {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: $dark;
+  border-radius: 2rem;
+  padding: 1.9rem;
+  color: $text;
+  height: 18rem;
+  font-size: .8rem;
+  line-height: 1.6;
+  overflow: hidden;
+  transition: transform .4s ease-in-out, opacity .4s ease-in-out;
+
+  #note-text {
+    cursor: text;
+    outline: none;
+    border: none;
+    resize: none;
+    font-family: inherit;
+    font-size: .8rem;
+    line-height: 1.6;
+    text-align: left;
+    color: $text;
+    background: none;
+    max-height: fit-content;
+    height: 100%;
+    overflow: hidden;
+    white-space: normal;
+  }
+
+  & > p {
+    max-height: 12rem;
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+    color: $text-dark;
+
+    p {
+      flex-grow: 1;
+      font-size: .8rem;
+      white-space: nowrap;
+    }
+
+    .edit-btn,
+    .delete-btn {
+      color: $text-dark;
+      font-size: 1rem;
+      margin-left: .5rem;
+      line-height: 0;
+
+      .fa-check-square {
+        font-size: 1.1rem;
+      }
+
+      &:hover {
+        color: $text;
+      }
+    }
+  }
+}
+
+h2 {
+  position: absolute;
+  color: $text-dark;
+  font-weight: 500;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.collapse {
+  max-width: 3.5rem;
+
+  @include laptop {
+    max-width: 100%;
+  }
+}
+
+.plus-toggle svg {
+  transform: rotate(180deg) !important;
+}
+
+.edit-content {
+  color: white !important;
+  background: darken($dark, 5%) !important;
+  box-shadow: 0 1rem 0 3rem darken($dark, 5%) !important;
+}
+
+.bye {
+  transform: scale(.5);
+  opacity: 0;
+}
